@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GUICintroller : MonoBehaviour
 {
-    private string[] objects = { "Bed", "Mirror", "Chair","Chest" };
+    private string[] objects = { "Bed", "Wood", "Chair","Box" };
     private int valor;
     public Text DirectorText;
     // Start is called before the first frame update
@@ -23,17 +23,22 @@ public class GUICintroller : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (valor < 4)
+        
+       
+            
+        if (collision.gameObject.tag == objects[valor])
         {
-            if (collision.gameObject.tag == objects[valor])
+            if (valor < 3)
             {
-                DirectorText.text = "Find a " + objects[valor++];
+                valor++;
+                DirectorText.text = "Find a " + objects[valor];
+                Debug.Log(valor);
+            }else
+            {
+                DirectorText.text = "You have found all the objects";
             }
         }
-        else
-        {
-            DirectorText.text = "You have found all the objects";
-        }
+       
     }
 
 }
